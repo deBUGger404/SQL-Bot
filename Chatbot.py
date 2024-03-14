@@ -37,7 +37,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
         if 'results' in message.keys():
             if isinstance(message["results"], str):
-                st.error(f"An error occurred: {e}")
+                st.error(message["results"])
             else:
                 st.dataframe(message["results"], use_container_width=True)
 
@@ -83,7 +83,7 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                     message["result_str"] = result_str
                     st.dataframe(message["results"], use_container_width=True)
                 except Exception as e:
-                    message["results"] = ''
+                    message["results"] = f'An error occurred: {e}'
                     message["result_str"] = ''
                     st.error(f"An error occurred: {e}")
 
