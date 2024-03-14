@@ -26,6 +26,7 @@ except ValueError as e:
 
 #print('Current DB Name:')
 # st.write(f"Current DB Name: {st.session_state.db_name}")
+st.toast(f"Current DB Name: {st.session_state.db_name}",icon='🥚')
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
