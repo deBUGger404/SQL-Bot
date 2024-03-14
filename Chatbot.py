@@ -113,8 +113,8 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                 response = response
             message = {"role": "assistant", "content": response}
     else:
+        print('check this',st.session_state.messages)
         with st.chat_message("assistant"):
-            print('check this',st.session_state.messages)
             try:
                 stream = client.chat.completions.create(
                     model= config['chat_model_name'],
