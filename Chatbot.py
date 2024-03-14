@@ -108,15 +108,18 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
             message = {"role": "assistant", "content": response}
     else:
         with st.chat_message("assistant"):
-            stream = client.chat.completions.create(
-                model= config['chat_model_name'],
-                messages=[
-                    {"role": m["role"], "content": m["content"]}
-                    for m in st.session_state.messages
-                ],
-                stream=True,
-            )
-            response = st.write_stream(stream)
+            try:
+                stream = client.chat.completions.create(
+                    model= config['chat_model_name'],
+                    messages=[
+                        {"role": m["role"], "content": m["content"]}
+                        for m in st.session_state.messages
+                    ],
+                    stream=True,
+                )
+                response = st.write_stream(stream)
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
             message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
     print('hi bro', st.session_state.messages, '\n')
