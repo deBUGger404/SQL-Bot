@@ -16,7 +16,7 @@ def setup_page():
                     "About": f"""
                         ## {PAGE_TITLE} SQL Assistant
                         
-                        **GitHub**: (https://github.com/deBUGger404)
+                        [![Open in GitHub](https://img.shields.io/badge/GitHub-deBUGger404-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/deBUGger404)
                         
                         The AI Assistant named, {PAGE_TITLE}, aims to provide the SQL queries from user query,
                         generate SQL codes,
@@ -37,8 +37,7 @@ def chatbot_sidebar():
             "As a project in continuous evolution, we welcome your insights "
             "and suggestions. Engage with us on GitHub to shape its future."
         )
-        st.markdown("Crafted with care by deBUGger404,")
-        "[![Open in GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/deBUGger404)"
+        st.markdown("Crafted with care by [![Open in GitHub](https://img.shields.io/badge/GitHub-deBUGger404-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/deBUGger404)")
 
 def setup_bot_sidebar():
     with st.sidebar:
