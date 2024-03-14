@@ -16,24 +16,10 @@ InsightGenix is an open-source Python framework designed to simplify SQL query g
 Ensure you have Python and Streamlit installed in your environment, then install requirements to run InsightGenix:
 
 ```bash
-pip install -r requirements.txt
-
-```bash
 poetry install 
-
-### Example
-
-Here's a simple example demonstrating how to set up InsightGenix within a Streamlit app:
-
-```python
-import streamlit as st
-from insightgenix import setup_page
-
-# Set up your InsightGenix SQL Assistant
-setup_page()
-
-st.write("Welcome to InsightGenix SQL Assistant!")
 ```
+
+
 Acknowledgments
 ---------------
 
