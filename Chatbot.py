@@ -36,7 +36,10 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if 'results' in message.keys():
-            st.dataframe(message["results"], use_container_width=True)
+            if isinstance(message["results"], str):
+                st.error(f"An error occurred: {e}")
+            else:
+                st.dataframe(message["results"], use_container_width=True)
 
 # Call init_season() with the appropriate configuration dict
 client = azure_openai(config=config)
