@@ -65,11 +65,11 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                 stream=True,
             )
             response = st.write_stream(stream)
-        message = {"role": "assistant", "content": response}
         if len(response)>1:
             response = response[-1]
         else:
             response = response
+        message = {"role": "assistant", "content": response}
         sql_match = re.search(r"```sql\n(.*)\n```", response, re.DOTALL)
         with st.spinner('Getting insights from database based on the query.....'):
             if sql_match:
