@@ -11,7 +11,7 @@ from chroma_db.chroma_vector import ChromaDB_VectorStore
 
 def load_env():
     if 'uploaded_env_file' in st.session_state:
-        print('uploaded_env_file:', st.session_state.uploaded_env_file)
+        ##print('uploaded_env_file:', st.session_state.uploaded_env_file)
         load_dotenv(st.session_state.uploaded_env_file)
     else:
         st.warning('API key is required but not provided.')
@@ -38,21 +38,21 @@ def get_openai_config() -> dict:
 def find_latest_folder(db_path: str):
     # Check if the data folder exists
     if not os.path.exists(db_path):
-        print("The specified path does not exist.")
+        #print("The specified path does not exist.")
         return None
 
     # Get the list of directories in the db_path
     directories = [d for d in os.listdir(db_path) if os.path.isdir(os.path.join(db_path, d))]
-    print('Directories:', directories)
+    #print('Directories:', directories)
 
     if not directories:
-        print("No directories found in the specified path.")
+        #print("No directories found in the specified path.")
         return None
 
     # Sort directories by their modification time in descending order
     latest_directory = max(directories, key=lambda x: os.path.getmtime(os.path.join(db_path, x)))
 
-    print(f"Latest directory: {latest_directory}")
+    #print(f"Latest directory: {latest_directory}")
     return latest_directory
 
 def init_chromadb(config: dict, db_path: str = './data/db_data/') -> Tuple:
@@ -69,19 +69,19 @@ def init_chromadb(config: dict, db_path: str = './data/db_data/') -> Tuple:
     # Check if the data folder exists and create it if not
     os.makedirs(db_path, exist_ok=True)
     latest_folder = find_latest_folder(db_path)
-    print('latest_folder',latest_folder)
+    #print('latest_folder',latest_folder)
     # Check if the folder is empty
     if latest_folder:
         # If not empty, read from the latest file
         db_path = os.path.join(db_path, latest_folder)
-        print(f"Reading from existing database: {latest_folder}")
+        #print(f"Reading from existing database: {latest_folder}")
     else:
         # If empty, create a new database file
         new_db_name = 'chroma_database_' + str(uuid.uuid4())
         db_path = os.path.join(db_path, new_db_name)
         # Ensure the new database directory exists
         os.makedirs(db_path, exist_ok=True)
-        print(f"Creating new database: {new_db_name}")
+        #print(f"Creating new database: {new_db_name}")
 
     # Initialize a new ChromaDB instance with the provided configuration
     db = ChromaDB_VectorStore(config={'path': db_path, **config})
@@ -101,7 +101,7 @@ def reset_chromadb(db_path: str = './data/db_data/') -> None:
         existing_db_path = os.path.join(db_path, st.session_state.db_name)
         if os.path.exists(existing_db_path):
             shutil.rmtree(existing_db_path)
-            print(f"Deleted existing database: {st.session_state.db_name}")
+            #print(f"Deleted existing database: {st.session_state.db_name}")
             # Also remove the db and db_name from session state
             del st.session_state['db_name']
             if 'db' in st.session_state:
@@ -111,11 +111,11 @@ def init_season(config: dict):
     # Initialize and store the DB in session state if it's not already done
     
     if 'db' not in st.session_state or 'db_name' not in st.session_state:
-        print('here i am ')
+        #print('here i am ')
         st.session_state.db, st.session_state.db_name = init_chromadb(config=config)
         st.session_state.openai_key = config['api_key']
         st.session_state.chat_model_name = config['chat_model_name']
-        print(f'Database setup done: {st.session_state.db_name}')
+        #print(f'Database setup done: {st.session_state.db_name}')
     
 def query_to_dataframe(db_file: str, query: str) -> pd.DataFrame:
     """
@@ -307,7 +307,8 @@ LIMIT 10;
 
         for example in question_sql_list:
             if example is None:
-                print("example is None")
+                continue 
+                #print("example is None")
             else:
                 if example is not None and "question" in example and "sql" in example:
                     message_log.append(user_message(example["question"]))

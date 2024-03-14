@@ -14,7 +14,7 @@ setup_page()
 # setup side bar
 chatbot_sidebar()
 
-print('chatbot session',st.session_state)
+#print('chatbot session',st.session_state)
 # Attempt to initialize and catch any errors
 try:
     # Attempt to retrieve the OpenAI configuration and initialize the season
@@ -24,7 +24,7 @@ except ValueError as e:
     st.warning(f"Please upload database and Setup OpenAI credentials: {e}")
     st.stop()  # Prevent further execution
 
-print('Current DB Name:')
+#print('Current DB Name:')
 st.write(f"Current DB Name: {st.session_state.db_name}")
 
 if "messages" not in st.session_state:
@@ -57,7 +57,7 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
 
     if prompt.startswith('query:'):
         middle_prompt = get_relevent_prompt(prompt, data)
-        print(middle_prompt)
+        #print(middle_prompt)
         with st.chat_message("assistant"):
             stream = client.chat.completions.create(
                 model= config['chat_model_name'],
@@ -74,7 +74,7 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
         with st.spinner('Getting insights from database based on the query.....'):
             if sql_match:
                 sql = sql_match.group(1)
-                print('path of databse', st.session_state.db_file_path)
+                #print('path of databse', st.session_state.db_file_path)
                 try:
                     results = query_to_dataframe(st.session_state.db_file_path, sql)
                     # Convert DataFrame to a string with pipe-separated values
@@ -92,8 +92,8 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
             try:
                 my_list = st.session_state.messages
                 idx = -(next(i for i, d in enumerate(my_list[::-1]) if 'result_str' in d) + 2)
-                print("Latest dict with result:", my_list[idx + 1])
-                print("Dict just above the latest with result:", my_list[idx])
+                #print("Latest dict with result:", my_list[idx + 1])
+                #print("Dict just above the latest with result:", my_list[idx])
                 stream = client.chat.completions.create(
                     model= config['chat_model_name'],
                     messages=[
@@ -113,7 +113,7 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                 response = response
             message = {"role": "assistant", "content": response}
     else:
-        print('check this',st.session_state.messages)
+        ##print('check this',st.session_state.messages)
         with st.chat_message("assistant"):
             try:
                 stream = client.chat.completions.create(
@@ -136,4 +136,4 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                 response = response
             message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
-    print('hi bro', st.session_state.messages, '\n')
+    ##print('hi bro', st.session_state.messages, '\n')

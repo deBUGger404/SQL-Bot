@@ -31,7 +31,7 @@ class ChromaDB_VectorStore():
             self.n_results = 10  # defaults to 10 documents
 
         if curr_client == "persistent":
-            print('path',path)
+            #print('path',path)
             self.chroma_client = chromadb.PersistentClient(
                 path=path, settings=Settings(anonymized_telemetry=False, allow_reset=True)
             )
@@ -82,7 +82,7 @@ class ChromaDB_VectorStore():
             embeddings=self.generate_embedding(question_sql_json),
             ids=id,
         )
-        # print('adding sql',
+        # #print('adding sql',
         #     question_sql_json,
         #     self.generate_embedding(question_sql_json),
         #     id,
@@ -104,7 +104,7 @@ class ChromaDB_VectorStore():
             embeddings=self.generate_embedding(ddl_statement),
             ids=id,
         )
-        # print('adding ddl',
+        # #print('adding ddl',
         #     ddl_statement,
         #     self.generate_embedding(ddl_statement),
         #     id,
@@ -123,7 +123,7 @@ class ChromaDB_VectorStore():
             embeddings=self.generate_embedding(documentation),
             ids=id,
         )
-        # print('adding documents',
+        # #print('adding documents',
         #     documentation,
         #     self.generate_embedding(documentation),
         #     id
@@ -312,15 +312,15 @@ class ChromaDB_VectorStore():
         #     raise f"Please also provide a SQL query"
 
         if documentation:
-            print("Adding documentation....")
+            #print("Adding documentation....")
             return self.add_documentation(documentation)
 
         if sql:
             # if question is None:
                 # question = self.generate_question(sql)
-                # print("Question generated with sql:", question, "\nAdding SQL...")
+                # #print("Question generated with sql:", question, "\nAdding SQL...")
             return self.add_question_sql(sql)
 
         if ddl:
-            print("Adding ddl:", ddl)
+            #print("Adding ddl:", ddl)
             return self.add_ddl(ddl)
