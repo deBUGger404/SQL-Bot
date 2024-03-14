@@ -105,6 +105,12 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                 response = st.write_stream(stream)
             except StopIteration:
                 response = "I'm sorry, but without knowing specifically which data you are referring to, I am unable to provide a description. Could you please ask the question again?"
+            if len(response)>1:
+                response = response[-1]
+            elif len(response)==1:
+                response = response[0]
+            else:
+                response = response
             message = {"role": "assistant", "content": response}
     else:
         with st.chat_message("assistant"):
@@ -121,6 +127,12 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
             except Exception as e:
                 st.error(f"An error occurred: {e}")
                 response = f"An error occurred: {e}"
+            if len(response)>1:
+                response = response[-1]
+            elif len(response)==1:
+                response = response[0]
+            else:
+                response = response
             message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
     print('hi bro', st.session_state.messages, '\n')
