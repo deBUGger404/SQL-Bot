@@ -1,8 +1,13 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import re
 import streamlit as st
 from module.ui_module import chatbot_sidebar, setup_page
 from module.utils import *
 from dotenv import load_dotenv
+
 
 # setup page icon and name
 setup_page()
