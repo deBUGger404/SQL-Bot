@@ -1,7 +1,8 @@
 streamlit
-pandas
-python-dotenv
-pillow
-SQLAlchemy
-openai
-chromadb
+pandas==1.5.3
+python-dotenv==1.0.1
+pillow==10.2.0
+SQLAlchemy==2.0.28
+openai==1.13.3
+chromadb==0.4.24
+sqlite3==2.6.0
