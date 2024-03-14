@@ -150,7 +150,13 @@ def train_model_4():
             data = st.session_state.db_name
             reset_chromadb()
             rm_message = f"database Delete: {data}"
-            init_season()
+            try:
+                # Attempt to retrieve the OpenAI configuration and initialize the season
+                config = get_openai_config()
+                init_season(config)  # Assuming init_season now takes config as a parameter
+            except ValueError as e:
+                st.warning(f"Please upload database and Setup OpenAI credentials: {e}")
+                st.stop()  # Prevent further execution
             db_message = f"New database created: {st.session_state.db_name}"
             show = False
     # Display success message outside columns if db_message is set
