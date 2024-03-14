@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "InsightGenix"
+version = "0.1.0"
+description = "sql bot"
+authors = ["Rakesh Kumar <rakeshparmuwal1436@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.32.0"
+chromadb = "^0.4.2"
+pandas = "^1.5.3"
+SQLAlchemy = "^2.0.28"
+openai = "^1.13.3"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
