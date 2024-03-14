@@ -25,7 +25,7 @@ except ValueError as e:
     st.stop()  # Prevent further execution
 
 #print('Current DB Name:')
-st.write(f"Current DB Name: {st.session_state.db_name}")
+# st.write(f"Current DB Name: {st.session_state.db_name}")
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
