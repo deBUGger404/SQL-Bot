@@ -120,6 +120,7 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
                 response = st.write_stream(stream)
             except Exception as e:
                 st.error(f"An error occurred: {e}")
+                response = f"An error occurred: {e}"
             message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
     print('hi bro', st.session_state.messages, '\n')
