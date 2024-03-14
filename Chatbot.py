@@ -1,6 +1,6 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# __import__('pysqlite3')
+# import sys
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import re
 import streamlit as st
@@ -63,6 +63,7 @@ if prompt := st.chat_input(placeholder="Provide the data where biomarker is her2
             )
             response = st.write_stream(stream)
         message = {"role": "assistant", "content": response}
+        print(type(response), response)
         sql_match = re.search(r"```sql\n(.*)\n```", response, re.DOTALL)
         with st.spinner('Getting insights from database based on the query.....'):
             if sql_match:
