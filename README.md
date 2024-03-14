@@ -1,5 +1,5 @@
 
-| [![GitHub](https://img.shields.io/badge/GitHub-InsightGenix-blue?logo=github)](https://github.com/deBUGger404/SQL-Bot) 
+[![GitHub](https://img.shields.io/badge/GitHub-InsightGenix-blue?logo=github)](https://github.com/deBUGger404/SQL-Bot) 
 
 # InsightGenix: The SQL Assistant
 InsightGenix is an open-source Python framework designed to simplify SQL query generation, enhance data understanding, and facilitate insights extraction directly within Streamlit applications. Inspired by the convenience of modern AI tools, InsightGenix leverages the power of language models to interpret natural language requests into executable SQL queries, offering a streamlined approach to database interaction and data analysis.
